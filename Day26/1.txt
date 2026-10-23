@@ -1,0 +1,24 @@
+frontend = React.js
+Backend = Node.js / Express.js
+database = MongoDB
+
+Express.js =>
+             Express.js is a web application framework for Node.js,
+ designed for building web applications and APIs. 
+ It simplifies the process of handling HTTP requests, routing, and middleware integration.
+
+ .. That provides a robust set of features to develop web and mobile applications,
+  making it easier to develop server-side logic and manage data flow between the 
+  client and server.
+
+
+ Framwork = set of program = text book
+ library = set of program = story book
+
+
+Node.js => Powerfull Engine 
+
+Expree.js  => Povide all things already 
+
+Express.js Vs Node.js
+

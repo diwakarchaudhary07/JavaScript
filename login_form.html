@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign in to your account">
+    <title>Sign in | Northstar</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+        :root {
+            --ink: #1d2633;
+            --muted: #6d7885;
+            --line: #dfe4e8;
+            --paper: #fffdf9;
+            --accent: #c76745;
+            --accent-dark: #9e452b;
+            --cream: #f5eee5;
+            --error: #b23a48;
+            --success: #28745a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--ink);
+            background: #dfe9e7;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .page {
+            display: grid;
+            grid-template-columns: minmax(280px, 0.9fr) minmax(360px, 1.1fr);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .welcome-panel {
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            min-height: 520px;
+            padding: clamp(2rem, 6vw, 5rem);
+            color: #fffdf9;
+            isolation: isolate;
+            background: linear-gradient(145deg, rgba(26, 63, 67, .95), rgba(14, 37, 43, .88)),
+                url('image 3.png') center / cover;
+        }
+
+        .welcome-panel::before,
+        .welcome-panel::after {
+            position: absolute;
+            z-index: -1;
+            border: 1px solid rgba(255, 255, 255, .22);
+            border-radius: 50%;
+            content: '';
+        }
+
+        .welcome-panel::before {
+            width: 330px;
+            height: 330px;
+            right: -130px;
+            top: 12%;
+        }
+
+        .welcome-panel::after {
+            width: 200px;
+            height: 200px;
+            left: -100px;
+            bottom: 8%;
+        }
+
+        .brand {
+            position: absolute;
+            top: clamp(1.5rem, 5vw, 3.5rem);
+            left: clamp(2rem, 6vw, 5rem);
+            letter-spacing: .16em;
+            font-size: .78rem;
+            font-weight: 700;
+        }
+
+        .welcome-copy {
+            max-width: 420px;
+            animation: rise-in .7s ease both;
+        }
+
+        .eyebrow {
+            margin: 0 0 1rem;
+            color: #f6c09b;
+            letter-spacing: .18em;
+            font-size: .72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        h1 {
+            max-width: 380px;
+            margin: 0;
+            font-size: clamp(2.7rem, 5vw, 4.8rem);
+            line-height: 1.02;
+        }
+
+        .welcome-copy p:last-child {
+            max-width: 330px;
+            margin: 1.5rem 0 0;
+            color: rgba(255, 253, 249, .75);
+            line-height: 1.7;
+        }
+
+        .form-panel {
+            display: grid;
+            place-items: center;
+            padding: clamp(2rem, 7vw, 6rem);
+            background: var(--paper);
+        }
+
+        .form-wrap {
+            width: min(100%, 430px);
+            animation: rise-in .7s .1s ease both;
+        }
+
+        .form-heading h2 {
+            margin: 0;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+        }
+
+        .form-heading p {
+            margin: .7rem 0 2.2rem;
+            color: var(--muted);
+        }
+
+        .field {
+            position: relative;
+            margin-bottom: 1.15rem;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: .5rem;
+            color: #384452;
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        .field input {
+            width: 100%;
+            height: 3.4rem;
+            padding: 0 1rem;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            outline: none;
+            color: var(--ink);
+            background: #fff;
+            font: inherit;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .field input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(199, 103, 69, .13);
+        }
+
+        .field input.invalid {
+            border-color: var(--error);
+        }
+
+        .password-input {
+            position: relative;
+        }
+
+        .password-input input {
+            padding-right: 4.5rem;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: .7rem;
+            padding: .4rem;
+            border: 0;
+            color: var(--accent-dark);
+            background: transparent;
+            cursor: pointer;
+            font: inherit;
+            font-size: .78rem;
+            font-weight: 700;
+            transform: translateY(-50%);
+        }
+
+        .toggle-password:focus-visible,
+        a:focus-visible,
+        .submit-button:focus-visible {
+            outline: 3px solid rgba(199, 103, 69, .35);
+            outline-offset: 3px;
+        }
+
+        .error-message {
+            min-height: 1.1rem;
+            margin: .35rem 0 0;
+            color: var(--error);
+            font-size: .76rem;
+        }
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin: .25rem 0 1.7rem;
+            color: var(--muted);
+            font-size: .82rem;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .remember input {
+            accent-color: var(--accent);
+        }
+
+        a {
+            color: var(--accent-dark);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .submit-button {
+            width: 100%;
+            min-height: 3.4rem;
+            border: 0;
+            border-radius: 8px;
+            color: #fff;
+            background: var(--accent);
+            box-shadow: 0 8px 18px rgba(199, 103, 69, .2);
+            cursor: pointer;
+            font: inherit;
+            font-weight: 700;
+            transition: background .2s, transform .2s;
+        }
+
+        .submit-button:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .submit-button:disabled {
+            cursor: wait;
+            opacity: .7;
+        }
+
+        .status-message {
+            min-height: 1.25rem;
+            margin: 1rem 0 0;
+            text-align: center;
+            font-size: .84rem;
+            font-weight: 700;
+        }
+
+        .status-message.success {
+            color: var(--success);
+        }
+
+        .status-message.error {
+            color: var(--error);
+        }
+
+        .signup {
+            margin: 2.4rem 0 0;
+            color: var(--muted);
+            text-align: center;
+            font-size: .86rem;
+        }
+
+        @keyframes rise-in {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page {
+                display: block;
+            }
+
+            .welcome-panel {
+                min-height: 300px;
+                padding: 5.3rem 2rem 2.5rem;
+            }
+
+            .brand {
+                top: 2rem;
+                left: 2rem;
+            }
+
+            h1 {
+                font-size: clamp(2.5rem, 12vw, 4rem);
+            }
+
+            .welcome-copy p:last-child {
+                margin-top: 1rem;
+            }
+
+            .form-panel {
+                display: block;
+                padding: 3rem 1.5rem 4rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .form-options {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <section class="welcome-panel" aria-label="Welcome message">
+            <div class="brand">NORTHSTAR / 24</div>
+            <div class="welcome-copy">
+                <p class="eyebrow">A calmer digital space</p>
+                <h1>Good to see you again.</h1>
+                <p>Pick up where you left off and keep your best work moving forward.</p>
+            </div>
+        </section>
+
+        <section class="form-panel">
+            <div class="form-wrap">
+                <div class="form-heading">
+                    <h2>Sign in</h2>
+                    <p>Enter your details to access your account.</p>
+                </div>
+
+                <form id="loginForm" novalidate>
+                    <div class="field">
+                        <label for="email">Email address</label>
+                        <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com"
+                            required>
+                        <p class="error-message" id="emailError" aria-live="polite"></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="password">Password</label>
+                        <div class="password-input">
+                            <input id="password" name="password" type="password" autocomplete="current-password"
+                                placeholder="Enter your password" minlength="6" required>
+                            <button class="toggle-password" type="button" aria-label="Show password"
+                                aria-pressed="false">Show</button>
+                        </div>
+                        <p class="error-message" id="passwordError" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember"><input type="checkbox" name="remember"> Remember me</label>
+                        <a href="#forgot-password">Forgot password?</a>
+                    </div>
+
+                    <button class="submit-button" type="submit">Sign in to Northstar</button>
+                    <p class="status-message" id="statusMessage" aria-live="polite"></p>
+                </form>
+
+                <p class="signup">New here? <a href="#create-account">Create an account</a></p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const form = document.querySelector('#loginForm');
+        const email = document.querySelector('#email');
+        const password = document.querySelector('#password');
+        const emailError = document.querySelector('#emailError');
+        const passwordError = document.querySelector('#passwordError');
+        const statusMessage = document.querySelector('#statusMessage');
+        const submitButton = document.querySelector('.submit-button');
+        const togglePassword = document.querySelector('.toggle-password');
+
+        togglePassword.addEventListener('click', () => {
+            const isVisible = password.type === 'text';
+            password.type = isVisible ? 'password' : 'text';
+            togglePassword.textContent = isVisible ? 'Show' : 'Hide';
+            togglePassword.setAttribute('aria-label', isVisible ? 'Show password' : 'Hide password');
+            togglePassword.setAttribute('aria-pressed', String(!isVisible));
+        });
+
+        function clearErrors() {
+            email.classList.remove('invalid');
+            password.classList.remove('invalid');
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            statusMessage.textContent = '';
+            statusMessage.className = 'status-message';
+        }
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            clearErrors();
+
+            let isValid = true;
+
+            if (!email.validity.valid) {
+                email.classList.add('invalid');
+                emailError.textContent = email.value ? 'Enter a valid email address.' : 'Email address is required.';
+                isValid = false;
+            }
+
+            if (!password.validity.valid) {
+                password.classList.add('invalid');
+                passwordError.textContent = password.value ? 'Password must be at least 6 characters.' : 'Password is required.';
+                isValid = false;
+            }
+
+            if (!isValid) {
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Signing you in...';
+
+            window.setTimeout(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Sign in to Northstar';
+                statusMessage.className = 'status-message success';
+                statusMessage.textContent = 'Details look good. You are ready to continue.';
+            }, 700);
+        });
+
+        [email, password].forEach((input) => {
+            input.addEventListener('input', () => {
+                input.classList.remove('invalid');
+                if (input === password) {
+                    passwordError.textContent = '';
+                } else {
+                    emailError.textContent = '';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

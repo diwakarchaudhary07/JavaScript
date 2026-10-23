@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0%;
+            background-color: rgb(197, 172, 140);
+        }
+
+        .navbar {
+            margin: 0%;
+            height: 40px;
+            width: 100%;
+            position: fixed;
+        }
+
+        .div1 {
+
+            background-color: rgb(14, 19, 70);
+            height: 40px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            font-size: 17px;
+            text-align: center;
+            color: aliceblue;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            justify-content: space-between;
+            justify-content: space-around;
+
+
+        }
+
+        .logo {
+            justify-content: space-around;
+            margin: 3px;
+            font-size: 20px;
+            width: 20px;
+            text-align: center;
+
+        }
+
+        .searchbar {
+            height: 25px;
+            width: 400px;
+            border-radius: 10px;
+            border: 0px;
+            margin: 8px;
+
+
+        }
+
+        .login {
+            margin-top: -1px;
+            padding-top: 10px;
+            font-size: 15px;
+            width: 20px;
+        }
+
+        .wishlist {
+            margin-top: -1px;
+            padding-top: 10px;
+            font-size: 15px;
+            width: 20px;
+
+        }
+
+        .cart {
+            margin-top: -1px;
+            padding-top: 10px;
+            font-size: 15px;
+            width: 10pxpx;
+        }
+
+        .div2 {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            height: 20px;
+            width: 100%;
+            background-color: whitesmoke;
+            color: rgb(31, 28, 28);
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="div1">
+            <p class="logo"><b>Shop</b>Nest</p>
+
+            <input type="search" placeholder="search for product brands and more" class="searchbar">
+
+            <p class="login">Login/signUp</p>
+
+            <p class="wishlist">wishlist</p>
+
+            <p class="cart">Add to Cart</p>
+
+        </div>
+        <div class="div2">
+            <label for="category">All Categories</label>
+
+            <select id="category" name="city">
+                <option value=""> Male Collection</option>
+                <option value="delhi">Female Collection</option>
+                <option value="meerut">Sports Collection</option>
+                <option value="agra">Foods Collection</option>
+                <option value="noida">Kitchen Collection</option>
+            </select>
+            <p class="home">Home</p>
+            <p class="shop">Shop</p>
+            <p class="deals">Deals</p>
+            <p class="about">About us</p>
+            <p class="contact">Contact us</p>
+        </div>
+
+
+    </nav>
+
+</body>
+
+</html>

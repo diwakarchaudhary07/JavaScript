@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class IDModel {
+        constructor(username, userage, userrollno) {
+          this.Name = username;
+          this.Age = userage;
+          this.Rollno = userrollno;
+        }
+        PrintId() {
+          document.writeln(
+            `Name is ${this.Name} ,age is ${this.Age} and the rollno is ${
+              this.Rollno
+            }`,
+          );
+        }
+      }
+      let DiwakarID = new IDModel("Diwakar Chaudhary", 19, "SEC-A126");
+      let Ramu = new IDModel("Ramu Chaudhary", 20, "SEC-A128");
+      DiwakarID.PrintId();
+      Ramu.PrintId();
+    </script>
+  </body>
+</html>

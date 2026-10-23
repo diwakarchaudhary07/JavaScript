@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- extranal js link -->
+    <!-- <script src="./index.js"></script> -->
+
+    <style>
+        #heading{
+            background-color: brown;
+            color: white;
+            text-align: center;
+        }
+        #b1{
+            background-color: green;
+            color: white;
+            border-radius: 30px;
+             border: 0px;
+              width: 80px;
+        }
+        #b2{
+            background-color: rgb(128, 0, 0);
+            color: white;
+            border-radius: 30px;
+            border: 0px;
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading">Are you ready for play ?</h1>
+    <!-- <button oneclick="">welcome</button> inline js -->
+    <button id="b1">ok</button>
+
+    <button id="b2">cancel</button>
+    
+</body>
+<!-- internal js -->
+<script>
+      document.getElementById("b1").onclick = function(){
+        document.getElementById("heading").innerHTML =  "Yes , i am ready."
+      }
+      document.getElementById("b2").onclick = function(){
+        document.getElementById("heading").innerHTML =  "No , i am ready."
+      }
+
+</script>
+</html>
